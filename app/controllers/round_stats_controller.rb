@@ -3,11 +3,16 @@ class RoundStatsController < ApplicationController
   # GET /round_stats
   # GET /round_stats.json
   def index
-    @round_stats = RoundStat.all
+   @round_stats = RoundStat.all
+   # 
+   # respond_to do |format|
+   #   format.html # index.html.erb
+   #   format.json { render json: @round_stats }
+   # end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @round_stats }
+      format.html
+      format.json { render json: RoundStatsDatatable.new(view_context) }
     end
   end
 

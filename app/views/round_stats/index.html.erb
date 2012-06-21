@@ -1,5 +1,31 @@
 <h1>Listing round_stats</h1>
 
+<table id="round_stats" class="display">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Kills</th>
+      <th>Deaths</th>
+      <th>Hits</th>
+      <th>Shots</th>
+      <th>Headshots</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @round_stats.each do |round_stat| %>
+    <tr>
+      <td align="right"><%= round_stat.name %></td>
+      <td align="right"><%= round_stat.kills %></td>
+      <td align="right"><%= round_stat.deaths %></td>
+      <td align="right"><%= round_stat.hits %></td>
+      <td align="right"><%= round_stat.shots %></td>
+      <td align="right"><%= round_stat.headshots %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if false %>
 <table>
   <tr>
     <th>Name</th>
@@ -33,3 +59,4 @@
 <br />
 
 <%= link_to 'New Round stat', new_round_stat_path %>
+<% end %>
