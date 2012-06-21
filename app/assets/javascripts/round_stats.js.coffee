@@ -4,3 +4,4 @@
 jQuery ->
   $('#round_stats').dataTable
     sPaginationType: "full_numbers"
+    bJQueryUI: true
