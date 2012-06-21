@@ -6,9 +6,8 @@
       <th>Name</th>
       <th>Kills</th>
       <th>Deaths</th>
-      <th>Hits</th>
-      <th>Shots</th>
-      <th>Headshots</th>
+      <th>% Hits</th>
+      <th>% Headshots</th>
     </tr>
   </thead>
   <tbody>
@@ -17,9 +16,8 @@
       <td align="right"><%= round_stat.name %></td>
       <td align="right"><%= round_stat.kills %></td>
       <td align="right"><%= round_stat.deaths %></td>
-      <td align="right"><%= round_stat.hits %></td>
-      <td align="right"><%= round_stat.shots %></td>
-      <td align="right"><%= round_stat.headshots %></td>
+      <td align="right"><%= (100 * round_stat.hits.to_f/round_stat.shots).round(2) %></td>
+      <td align="right"><%= (100 * round_stat.headshots.to_f/round_stat.shots).round(2) %></td>
     </tr>
     <% end %>
   </tbody>
