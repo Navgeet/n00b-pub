@@ -1,0 +1,2 @@
+#!/usr/bin/env ruby
+require '/home/nav/n00b-pub/vendor/plugins/script-refactor/lib/script_refactor'
