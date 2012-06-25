@@ -1,4 +1,8 @@
 N00bPub::Application.routes.draw do
+  resources :daily_stats
+
+  resources :perma_stats
+
   #get "home/index"
   authenticated :user do
     root :to => 'home#index'

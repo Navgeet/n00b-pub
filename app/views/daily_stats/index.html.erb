@@ -1,0 +1,60 @@
+<h1>Listing daily_stats</h1>
+
+<table id="daily_stats" class="display">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Kills</th>
+      <th>Deaths</th>
+      <th>% Hits</th>
+      <th>% Headshots</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @daily_stats.each do |daily_stat| %>
+    <tr>
+      <td align="right"><%= daily_stat.name %></td>
+      <td align="right"><%= daily_stat.kills %></td>
+      <td align="right"><%= daily_stat.deaths %></td>
+      <td align="right"><%= (100 * daily_stat.hits.to_f/daily_stat.shots).round(2) %></td>
+      <td align="right"><%= (100 * daily_stat.headshots.to_f/daily_stat.shots).round(2) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if false %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Setinfo pass</th>
+    <th>Kills</th>
+    <th>Deaths</th>
+    <th>Hits</th>
+    <th>Shots</th>
+    <th>Headshots</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @daily_stats.each do |daily_stat| %>
+  <tr>
+    <td><%= daily_stat.name %></td>
+    <td><%= daily_stat.setinfo_pass %></td>
+    <td><%= daily_stat.kills %></td>
+    <td><%= daily_stat.deaths %></td>
+    <td><%= daily_stat.hits %></td>
+    <td><%= daily_stat.shots %></td>
+    <td><%= daily_stat.headshots %></td>
+    <td><%= link_to 'Show', daily_stat %></td>
+    <td><%= link_to 'Edit', edit_daily_stat_path(daily_stat) %></td>
+    <td><%= link_to 'Destroy', daily_stat, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Round stat', new_daily_stat_path %>
+<% end %>

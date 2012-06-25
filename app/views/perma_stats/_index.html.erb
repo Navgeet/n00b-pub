@@ -1,0 +1,60 @@
+<h1>Listing perma_stats</h1>
+
+<table id="perma_stats" class="display">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Kills</th>
+      <th>Deaths</th>
+      <th>% Hits</th>
+      <th>% Headshots</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @perma_stats.each do |perma_stat| %>
+    <tr>
+      <td align="right"><%= perma_stat.name %></td>
+      <td align="right"><%= perma_stat.kills %></td>
+      <td align="right"><%= perma_stat.deaths %></td>
+      <td align="right"><%= (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
+      <td align="right"><%= (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if false %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Setinfo pass</th>
+    <th>Kills</th>
+    <th>Deaths</th>
+    <th>Hits</th>
+    <th>Shots</th>
+    <th>Headshots</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @perma_stats.each do |perma_stat| %>
+  <tr>
+    <td><%= perma_stat.name %></td>
+    <td><%= perma_stat.setinfo_pass %></td>
+    <td><%= perma_stat.kills %></td>
+    <td><%= perma_stat.deaths %></td>
+    <td><%= perma_stat.hits %></td>
+    <td><%= perma_stat.shots %></td>
+    <td><%= perma_stat.headshots %></td>
+    <td><%= link_to 'Show', perma_stat %></td>
+    <td><%= link_to 'Edit', edit_perma_stat_path(perma_stat) %></td>
+    <td><%= link_to 'Destroy', perma_stat, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Round stat', new_perma_stat_path %>
+<% end %>

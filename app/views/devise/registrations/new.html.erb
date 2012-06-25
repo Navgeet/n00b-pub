@@ -6,6 +6,9 @@
   <p><%= f.label :name %><br />
     <%= f.text_field :name %></p>
 
+  <p><%= f.label :setinfo_pass %><br />
+    <%= f.text_field :setinfo_pass %></p>
+
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
@@ -14,7 +17,7 @@
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
-
+    
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

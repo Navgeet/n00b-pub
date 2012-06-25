@@ -1,6 +1,6 @@
-class CreateRoundStats < ActiveRecord::Migration
+class CreatePermaStats < ActiveRecord::Migration
   def change
-    create_table :round_stats do |t|
+    create_table :perma_stats do |t|
       t.string :name
       t.string :setinfo_pass
       t.integer :kills    , :default => 0 

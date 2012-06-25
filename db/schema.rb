@@ -11,16 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621150448) do
+ActiveRecord::Schema.define(:version => 20120622050003) do
+
+  create_table "daily_stats", :force => true do |t|
+    t.string  "name"
+    t.string  "setinfo_pass"
+    t.integer "kills",        :default => 0
+    t.integer "deaths",       :default => 0
+    t.integer "hits",         :default => 0
+    t.integer "shots",        :default => 0
+    t.integer "headshots",    :default => 0
+  end
+
+  create_table "perma_stats", :force => true do |t|
+    t.string  "name"
+    t.string  "setinfo_pass"
+    t.integer "kills",        :default => 0
+    t.integer "deaths",       :default => 0
+    t.integer "hits",         :default => 0
+    t.integer "shots",        :default => 0
+    t.integer "headshots",    :default => 0
+  end
 
   create_table "round_stats", :force => true do |t|
     t.string  "name"
     t.string  "setinfo_pass"
-    t.integer "kills"
-    t.integer "deaths"
-    t.integer "hits"
-    t.integer "shots"
-    t.integer "headshots"
+    t.integer "kills",        :default => 0
+    t.integer "deaths",       :default => 0
+    t.integer "hits",         :default => 0
+    t.integer "shots",        :default => 0
+    t.integer "headshots",    :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -37,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120621150448) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "setinfo_pass"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
