@@ -20,6 +20,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
   gem 'jquery-ui-rails'
+  gem "twitter-bootstrap-rails"
+  gem 'less'
 end
 
 gem 'jquery-rails'
@@ -45,4 +47,3 @@ gem 'will_paginate'
 gem "devise", ">= 2.1.0.rc"
 gem "cancan", ">= 1.6.7"
 gem "rolify", ">= 3.1.0"
-gem "bootstrap-sass", ">= 2.0.1"
