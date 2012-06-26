@@ -10,7 +10,7 @@
 */
 html, body {height: 100%;}
 
-#wrap {min-height: auto;}
+#wrap {min-height: 10px;}
 
 #main {overflow:auto;
        padding-bottom: 200px;}  /* must be same height as the footer */
@@ -18,4 +18,5 @@ html, body {height: 100%;}
 #footer {position: relative;
 	 margin-top: -200px; /* negative value of footer height */
 	 height: 200px;
-	 clear:both;} 
+	 clear:both;
+	 width: 100%;} 
