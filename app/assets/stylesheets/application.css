@@ -8,21 +8,14 @@
  *= require jquery.ui.theme
  *= require dataTables/src/demo_table_jui
 */
-* {
-    margin: 0;
-    }
-html, body {
-    height: 100%;
-    }
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -12px; /* the bottom margin is the negative value of the footer's height */
-    }
-.footer, .push {
-    position: relative;
-    width: auto;
-    bottom: 0px;
-    height: 12px; /* .push must be the same height as .footer */
-    }
+html, body {height: 100%;}
+
+#wrap {min-height: auto;}
+
+#main {overflow:auto;
+       padding-bottom: 200px;}  /* must be same height as the footer */
+
+#footer {position: relative;
+	 margin-top: -200px; /* negative value of footer height */
+	 height: 200px;
+	 clear:both;} 
