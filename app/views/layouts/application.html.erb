@@ -12,7 +12,7 @@
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 <body>
-  <header class="navbar navbar-fixed-top">
+  <header class="navbar navbar-fixed-top" style="z-index: 100;">
     <nav class="navbar-inner">
       <div class="container">
 	<%= render 'layouts/navigation' %>
@@ -20,6 +20,7 @@
     </nav>
   </header>
   <div id="main" role="main">
+    <a href="https://github.com/Navgeet/n00b-pub"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 1000;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
     <div class="container">
       <div class="content">
 	<div class="row">
