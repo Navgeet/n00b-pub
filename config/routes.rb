@@ -1,8 +1,5 @@
 N00bPub::Application.routes.draw do
-  # match 'users/sign_in' => 'devise/sessions#new'
-  # match 'users/:name' => 'users#show'
   resources :daily_stats
-
   resources :perma_stats
 
   #get "home/index"
