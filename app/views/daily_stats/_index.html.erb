@@ -11,13 +11,7 @@
   <tbody>
     <% @daily_stats.each do |daily_stat| %>
     <tr>
-      <% if false %>
-      <td align="right"><a href="#" class="btn btn-danger" rel="popover" title=<%= daily_stat.name %> data-content="And here's some amazing content. It's very engaging. right?"><%= link_to daily_stat.name, "users/".concat(daily_stat.name)  %></a>
-	<% end %>
-      <% if false %>	
-      <td align="right"><%= link_to daily_stat.name, "users/".concat(daily_stat.name) , "data-content" => "shit", "data-title" => "shit"%></td>
-      <% end %>
-      <td align="right"><%= link_to(daily_stat.name, "users/".concat(daily_stat.name), :class => "popover-with-html", :title => daily_stat.name, "data-content" => "shit") %>
+      <td align="right"><%= link_to(daily_stat.name, "p/".concat(daily_stat.name), :class => "popover-with-html", :title => daily_stat.name, "data-content" => "shit") %>
       <td align="right"><%= daily_stat.kills %></td>
       <td align="right"><%= daily_stat.deaths %></td>
       <td align="right"><%= (100 * daily_stat.hits.to_f/daily_stat.shots).round(2) %></td>
