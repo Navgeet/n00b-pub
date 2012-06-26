@@ -11,7 +11,7 @@
   <tbody>
     <% @daily_stats.each do |daily_stat| %>
     <tr>
-      <td align="right"><%= daily_stat.name %></td>
+      <td align="right"><%= link_to daily_stat.name, "users/".concat(daily_stat.name)  %></td>
       <td align="right"><%= daily_stat.kills %></td>
       <td align="right"><%= daily_stat.deaths %></td>
       <td align="right"><%= (100 * daily_stat.hits.to_f/daily_stat.shots).round(2) %></td>

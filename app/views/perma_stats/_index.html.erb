@@ -11,7 +11,7 @@
   <tbody>
     <% @perma_stats.each do |perma_stat| %>
     <tr>
-      <td align="right"><%= perma_stat.name %></td>
+      <td align="right"><%= link_to perma_stat.name, "users/".concat(perma_stat.name)  %></td>
       <td align="right"><%= perma_stat.kills %></td>
       <td align="right"><%= perma_stat.deaths %></td>
       <td align="right"><%= (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>

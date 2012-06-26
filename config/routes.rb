@@ -1,4 +1,5 @@
 N00bPub::Application.routes.draw do
+  match 'users/:name' => 'users#show'
   resources :daily_stats
 
   resources :perma_stats
@@ -14,6 +15,7 @@ N00bPub::Application.routes.draw do
 
   resources :round_stats
 
+  #match 'users/:name' => 'users#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -11,7 +11,7 @@
   <tbody>
     <% @round_stats.each do |round_stat| %>
     <tr>
-      <td align="right"><%= round_stat.name %></td>
+      <td align="right"><%= link_to round_stat.name, round_stat.name %></td>
       <td align="right"><%= round_stat.kills %></td>
       <td align="right"><%= round_stat.deaths %></td>
       <td align="right"><%= (100 * round_stat.hits.to_f/round_stat.shots).round(2) %></td>
