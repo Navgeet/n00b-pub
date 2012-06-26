@@ -7,7 +7,8 @@ class CreateRoundStats < ActiveRecord::Migration
       t.integer :deaths   , :default => 0 
       t.integer :hits     , :default => 0 
       t.integer :shots    , :default => 0 
-      t.integer :headshots, :default => 0 
+      t.integer :headshots, :default => 0
+      t.integer :team   , :default => 3 
     end
   end
 end

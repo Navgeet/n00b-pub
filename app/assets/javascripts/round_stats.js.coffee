@@ -5,3 +5,5 @@ jQuery ->
   $('#round_stats').dataTable
     sPaginationType: "full_numbers"
     bJQueryUI: true
+    $('#daily_stats__name').popover()
+    $('.popover-with-html').popover({ html : true });

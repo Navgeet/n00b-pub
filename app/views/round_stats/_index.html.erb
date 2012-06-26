@@ -1,58 +1,38 @@
-<table id="round_stats" class="display">
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Kills</th>
+      <th>Nick</th>
+      <th>Kils</th>
       <th>Deaths</th>
       <th>% Hits</th>
       <th>% Headshots</th>
     </tr>
   </thead>
   <tbody>
-    <% @round_stats.each do |round_stat| %>
     <tr>
-      <td align="right"><%= link_to round_stat.name, round_stat.name %></td>
-      <td align="right"><%= round_stat.kills %></td>
-      <td align="right"><%= round_stat.deaths %></td>
-      <td align="right"><%= (100 * round_stat.hits.to_f/round_stat.shots).round(2) %></td>
-      <td align="right"><%= (100 * round_stat.headshots.to_f/round_stat.shots).round(2) %></td>
+    <td colspan="5"><strong><font color="red">Terrorists</font></strong></td>
+    </tr>
+    <% @ts.each do |player| %>
+    <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
+    <tr>
+      <td><%= if reg_player then link_to(player.name, "users/".concat(reg_player.name), :class => "popover-with-html", :title => reg_player.name, "data-content" => "shit") else player.name end %></td>
+      <td><%= player.kills %></td>
+      <td><%= player.deaths %></td>
+      <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
+      <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
+    </tr>
+    <% end %>
+    <tr>
+    <td colspan="5" align="center"><strong><font color="blue">Counter Terrorists</font></strong></td>
+    </tr>
+    <% @cts.each do |player| %>
+    <tr>
+      <td align="right"><%= player.name %></td>
+      <td align="right"><%= player.kills %></td>
+      <td align="right"><%= player.deaths %></td>
+      <td align="right"><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
+      <td align="right"><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-
-<% if false %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Setinfo pass</th>
-    <th>Kills</th>
-    <th>Deaths</th>
-    <th>Hits</th>
-    <th>Shots</th>
-    <th>Headshots</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @round_stats.each do |round_stat| %>
-  <tr>
-    <td><%= round_stat.name %></td>
-    <td><%= round_stat.setinfo_pass %></td>
-    <td><%= round_stat.kills %></td>
-    <td><%= round_stat.deaths %></td>
-    <td><%= round_stat.hits %></td>
-    <td><%= round_stat.shots %></td>
-    <td><%= round_stat.headshots %></td>
-    <td><%= link_to 'Show', round_stat %></td>
-    <td><%= link_to 'Edit', edit_round_stat_path(round_stat) %></td>
-    <td><%= link_to 'Destroy', round_stat, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Round stat', new_round_stat_path %>
-<% end %>

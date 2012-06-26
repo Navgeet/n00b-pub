@@ -42,3 +42,8 @@ end
 #puts 'New user created: ' << user.name
 #user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
 #puts 'New user created: ' << user2.name
+
+5.times { RoundStat.create(:name => rand_string, :setinfo_pass => rand_string, :kills => rand(10), :deaths => rand(10), :hits => rand(100), :shots => rand(1000), :headshots => rand(10), :team => 1) }
+
+5.times { RoundStat.create(:name => rand_string, :setinfo_pass => rand_string, :kills => rand(10), :deaths => rand(10), :hits => rand(100), :shots => rand(1000), :headshots => rand(10), :team => 2) }
+

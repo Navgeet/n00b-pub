@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120622050003) do
     t.integer "hits",         :default => 0
     t.integer "shots",        :default => 0
     t.integer "headshots",    :default => 0
+    t.integer "team",         :default => 3
   end
 
   create_table "users", :force => true do |t|

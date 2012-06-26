@@ -4,4 +4,7 @@
 jQuery ->
   $('#daily_stats').dataTable
     sPaginationType: "full_numbers"
-    bJQueryUI: true
+    bJQueryUI: true    
+    $('#daily_stats__name').popover()
+    $('.popover-with-html').popover({ html : true });
+    
