@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr>
-    <td colspan="5"><strong><font color="red">Terrorists</font></strong></td>
+    <td colspan="5"><strong><font color="red">Terrorists - <%= @ts.count %> players</font></strong></td>
     </tr>
     <% @ts.each do |player| %>
     <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
@@ -23,7 +23,7 @@
     </tr>
     <% end %>
     <tr>
-    <td colspan="5" align="center"><strong><font color="blue">Counter Terrorists</font></strong></td>
+    <td colspan="5" align="center"><strong><font color="blue">Counter Terrorists - <%= @cts.count %> players</font></strong></td>
     </tr>
     <% @cts.each do |player| %>
     <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
