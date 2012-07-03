@@ -17,33 +17,33 @@ PermaStat.delete_all
 
 User.delete_all
 #puts 'SETTING UP DEFAULT USER LOGIN'
-pass = rand_string
-55.times { user = User.create! :name => rand_string, :setinfo_pass => rand_string, :email => rand_string + "@gmail.com", :password => pass, :password_confirmation => pass }
+#pass = rand_string
+#55.times { user = User.create! :name => rand_string, :setinfo_pass => rand_string, :email => rand_string + "@gmail.com", :password => pass, :password_confirmation => pass }
 
-@perma_stats = PermaStat.all
+# @perma_stats = PermaStat.all
 
-@perma_stats.each do |row|
-  row.kills = rand(1000)
-  row.deaths = rand(1000)
-  row.hits = rand(1000)
-  row.headshots = rand(1000)
-  row.shots = rand(1000)
-end
-
-@daily_stats = DailyStat.all
-
-@daily_stats.each do |row|
-  row.kills = rand(1000)
-  row.deaths = rand(1000)
-  row.hits = rand(1000)
-  row.headshots = rand(1000)
-  row.shots = rand(1000)
-end
+# @perma_stats.each do |row|
+#   row.kills = rand(1000)
+#   row.deaths = rand(1000)
+#   row.hits = rand(1000)
+#   row.headshots = rand(1000)
+#   row.shots = rand(1000)
+# end
+#  
+# @daily_stats = DailyStat.all
+#  
+# @daily_stats.each do |row|
+#   row.kills = rand(1000)
+#   row.deaths = rand(1000)
+#   row.hits = rand(1000)
+#   row.headshots = rand(1000)
+#   row.shots = rand(1000)
+# end
 #puts 'New user created: ' << user.name
 #user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
 #puts 'New user created: ' << user2.name
 
-5.times { RoundStat.create(:name => rand_string, :setinfo_pass => rand_string, :kills => rand(10), :deaths => rand(10), :hits => rand(100), :shots => rand(1000), :headshots => rand(10), :team => 1) }
+#5.times { RoundStat.create(:name => rand_string, :setinfo_pass => rand_string, :kills => rand(10), :deaths => rand(10), :hits => rand(100), :shots => rand(1000), :headshots => rand(10), :team => 1) }
 
-5.times { RoundStat.create(:name => rand_string, :setinfo_pass => rand_string, :kills => rand(10), :deaths => rand(10), :hits => rand(100), :shots => rand(1000), :headshots => rand(10), :team => 2) }
+#5.times { RoundStat.create(:name => rand_string, :setinfo_pass => rand_string, :kills => rand(10), :deaths => rand(10), :hits => rand(100), :shots => rand(1000), :headshots => rand(10), :team => 2) }
 
