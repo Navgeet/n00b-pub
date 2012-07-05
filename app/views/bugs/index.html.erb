@@ -1,0 +1,15 @@
+<h1>Bugs and suggestions</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+
+  <% @bugs.each do |bug| %>
+  <tr>
+    <td><%= bug.title %></td>
+    <td><%= bug.text %></td>
+  </tr>
+  <% end %>
+</table>
