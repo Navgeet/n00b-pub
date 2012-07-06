@@ -15,7 +15,7 @@ def show
 end
 
 def index
-  @bugs = Bug.all
+  @bugs = Bug.order("updated_at DESC")
 end
 
 end
