@@ -14,11 +14,12 @@ N00bPub::Application.routes.draw do
   resources :round_stats
   match 'p/:name' => 'users#show'
 
-  get "bugs/new"
-  post "bugs/create"
-  get "bugs/:id" => "bugs#show"
-  get "bugs" => "bugs#index"
-  #match 'users/:name' => 'users#show'
+  # get "bugs/new"
+  # post "bugs/create"
+  # get "bugs/:id" => "bugs#show"
+  # get "bugs" => "bugs#index"
+  resources :bugs
+  # match 'users/:name' => 'users#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
