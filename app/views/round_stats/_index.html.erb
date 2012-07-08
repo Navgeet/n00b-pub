@@ -19,7 +19,7 @@
       <td><%= player.kills %></td>
       <td><%= player.deaths %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
-      <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
+      <td><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
     </tr>
     <% end %>
     <tr>
@@ -32,7 +32,7 @@
       <td><%= player.kills %></td>
       <td><%= player.deaths %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
-      <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
+      <td><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
     </tr>
     <% end %>
   </tbody>
