@@ -1,10 +1,8 @@
-<div class="hero-unit">
-  <h1>Bugs and Suggestions</h1>
-  <p>Report bugs and suggest enhancements here. Also feel free to ask questions. To submit patches head over to <a href="https://github.com/Navgeet/n00b-pub">github</a></p>
+  <h1 STYLE="font: 36pt/40pt courier; font-variant: small-caps; ">Bugs and Suggestions</h1><br>
+  <h4>Report bugs and suggest enhancements here. Also feel free to ask questions. To submit patches head over to <a href="https://github.com/Navgeet/n00b-pub">github</a></h4><br>
   <p>
     <%= link_to "Report Bug", new_bug_path, :class => 'btn btn-primary btn-large' %>
-  </p>
-</div>
+  </p><br>
 
 <% @bugs.each do |bug| %>
 <h3><%= link_to bug.title, bug%></h3>
