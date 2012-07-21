@@ -1,24 +1,60 @@
-<h2>Sign up</h2>
+<h1>Sign up</h1></br>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+  
+  <div class="row">
+    <div class="span3">
+      <p><%= f.label :name %>
+	<%= f.text_field :name %></p>
+    </div>
+    <div class="span9">
+      <div class="well">
+	Enter your nick however you like. Also note that all characters (including unicode characters) are allowed.
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="span3">
+      <p><%= f.label :setinfo_pass %>
+	<%= f.text_field :setinfo_pass %></p>
+    </div>
+    <div class="span9">
+      <div class="well">
+	This password will be used to identify you in the server. Enter the exactly same password in your client as instructed in the <a href="/faq">faq</a>. Use only numbers, symbols and alphabets here.
+      </div>
+    </div>
+  </div>
 
-  <p><%= f.label :name %><br />
-    <%= f.text_field :name %></p>
+  <div class="row">
+    <div class="span3">
+      <p><div><%= f.label :email %>
+	  <%= f.email_field :email %></div></p>
+    </div>
+    <div class="span9">
+      <div class="well">
+	Please note that email is optional and you may choose to leave it empty or even enter a fake one. However do remember that it is required to recover your account credentials in case you forgot your password. Your email address will be kept secret.
+      </div>
+    </div>
+  </div>
 
-  <p><%= f.label :setinfo_pass %><br />
-    <%= f.text_field :setinfo_pass %></p>
+  <div class="row">
+    <div class="span3">
+      <p><div><%= f.label :password %>
+	  <%= f.password_field :password %></div></p>
+    </div>
+    <div class="span9">
+      <div class="well">
+	This is your Account Password. It is different from Setinfo Pass and is solely needed to log into your account and edit your info.
+      </div>
+    </div>
+  </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <p><div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div></p>
     
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.submit "Sign up" , :class=>"btn btn-primary"%></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
