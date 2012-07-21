@@ -1,4 +1,6 @@
 N00bPub::Application.routes.draw do
+  get "faq" => "faq#index"
+
   resources :daily_stats
   resources :perma_stats
 
