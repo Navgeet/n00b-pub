@@ -1,4 +1,4 @@
-<h1 STYLE="font: 36pt/40pt courier; font-variant: small-caps; ">Sign up</h1></br>
+<h1 STYLE="font: 36pt/40pt courier; font-variant: small-caps; ">Sign up</h1><br>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -34,7 +34,7 @@
     </div>
     <div class="span9">
       <div class="well">
-	Please note that email is optional and you may choose to leave it empty or even enter a fake one. However do remember that it is required to recover your account credentials in case you forgot your password. Your email address will be kept secret.
+	Please note that email is redundant and you may choose to enter a fake one. However entering a real email is recommended since it is required to recover your account credentials in case you forget your password. Your email address will be kept secret.
       </div>
     </div>
   </div>
