@@ -6,11 +6,12 @@
       <th>Deaths</th>
       <th>% Hits</th>
       <th>% Headshots</th>
+      <th>Time played</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-    <td colspan="5"><strong><font color="red">Terrorists - <%= @ts.count %> players</font></strong></td>
+    <td colspan="6"><strong><font color="red">Terrorists - <%= @ts.count %> players</font></strong></td>
     </tr>
     <% @ts.each do |player| %>
     <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
@@ -20,10 +21,11 @@
       <td><%= player.deaths %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
       <td><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
+      <td><%= if (time=player.time/60)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
     </tr>
     <% end %>
     <tr>
-    <td colspan="5" align="center"><strong><font color="blue">Counter Terrorists - <%= @cts.count %> players</font></strong></td>
+    <td colspan="6" align="center"><strong><font color="blue">Counter Terrorists - <%= @cts.count %> players</font></strong></td>
     </tr>
     <% @cts.each do |player| %>
     <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
@@ -33,6 +35,7 @@
       <td><%= player.deaths %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
       <td><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
+      <td><%= if (time=player.time/60)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
     </tr>
     <% end %>
   </tbody>

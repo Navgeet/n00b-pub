@@ -6,6 +6,7 @@
       <th>Deaths</th>
       <th>% Hits</th>
       <th>% Headshots</th>
+      <th>Time Played</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,7 @@
       <td align="right"><%= perma_stat.deaths %></td>
       <td align="right"><%= (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
       <td align="right"><%= (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
+      <td align="right"><%= if (time=perma_stat.time)<60 then "#{time.to_i} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
     </tr>
     <% end %>
   </tbody>
