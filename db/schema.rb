@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704055729) do
+ActiveRecord::Schema.define(:version => 20120804194524) do
 
   create_table "bugs", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20120704055729) do
     t.integer "hits",         :default => 0
     t.integer "shots",        :default => 0
     t.integer "headshots",    :default => 0
+    t.integer "time",         :default => 0
   end
 
   create_table "perma_stats", :force => true do |t|
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120704055729) do
     t.integer "hits",         :default => 0
     t.integer "shots",        :default => 0
     t.integer "headshots",    :default => 0
+    t.float   "time",         :default => 0.0
   end
 
   create_table "round_stats", :force => true do |t|
@@ -49,10 +51,11 @@ ActiveRecord::Schema.define(:version => 20120704055729) do
     t.integer "shots",        :default => 0
     t.integer "headshots",    :default => 0
     t.integer "team",         :default => 3
+    t.integer "time",         :default => 0
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
+    t.string   "email",                  :default => ""
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
