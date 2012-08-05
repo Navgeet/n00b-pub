@@ -1,5 +1,10 @@
-<h1>Users#show</h1>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1 STYLE="font: 27pt/30pt courier; font-variant: small-caps; "><%= @user.name %></h1><br>
+<% @player = PermaStat.find_by_setinfo_pass(@user.setinfo_pass) %>
+<h1 STYLE="font: 18pt/20pt courier; font-variant: small-caps; ">All time Stats</h1><br>
+<p><b>Kills</b> - <%= @player.kills %></p>
+<p><b>Deaths</b> - <%= @player.deaths %></p>
+<p><b>% Hits</b> - <%= (100*@player.hits.to_f/@player.shots).round(2) %></p>
+<p><b>% Headshots</b> - <%= (100*@player.headshots.to_f/@player.shots).round(2) %></p>
+<p><b>Time Played</b> - <%= "#{@player.time} hrs" %></p><br>
+<p>Registered on <b><%= @user.created_at.to_s.split(" ").first %></b></p>
 
