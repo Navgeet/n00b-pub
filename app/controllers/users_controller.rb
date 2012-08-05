@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(:all, :name => params[:name])
-    # @user = User.find(:all, :conditions => [ "name = ?", params[:name]])
-    @user = User.find_by_name(params[:name])
+    @user = User.find_by_url_name(params[:url_name])
   end
 end

@@ -14,7 +14,7 @@ N00bPub::Application.routes.draw do
   resources :users, :only => [:show, :index]
 
   resources :round_stats
-  match 'p/:name' => 'users#show'
+  match 'p/:url_name' => 'users#show'
 
   # get "bugs/new"
   # post "bugs/create"

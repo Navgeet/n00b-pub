@@ -9,14 +9,14 @@ def rand_string
   (0...10).map{ ('a'..'z').to_a[rand(26)] }.join
 end
 
-RoundStat.delete_all
+#RoundStat.delete_all
 DailyStat.delete_all
 PermaStat.delete_all
 #RoundStat.create(:name => "Shep", :setinfo_pass => "abcd", :kills => 1000, :deaths => 50, :hits => 1000, :shots => 100000, :headshots => 10)
 #55.times { RoundStat.create(:name => rand_string, :setinfo_pass => rand_string, :kills => rand(1000), :deaths => 50+rand(1000), :hits => rand(10000), :shots => rand(10000), :headshots => rand(100)) }
 
 User.delete_all
-Bug.delete_all
+#Bug.delete_all
 #puts 'SETTING UP DEFAULT USER LOGIN'
 #pass = rand_string
 #55.times { user = User.create! :name => rand_string, :setinfo_pass => rand_string, :email => rand_string + "@gmail.com", :password => pass, :password_confirmation => pass }
