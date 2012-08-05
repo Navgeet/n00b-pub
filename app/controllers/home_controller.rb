@@ -1,7 +1,7 @@
 
 class HomeController < ApplicationController
   def index
-    flash.now[:alert] = "Please note that the site is in beta stage. <a href=\"/bugs\">Help out</a> by reporting bugs and suggesting enhancements. Also note that current accounts are temporary and may be lost.".html_safe
+    flash.now[:alert] = "Please note that the site is in beta stage. <a href=\"/bugs\">Help out</a> by reporting bugs and suggesting enhancements.".html_safe
     flash.now[:notice] = "New here? Read this if you are <a href=\"/faq\">getting started</a>.".html_safe
     flash.now[:tip] = "Tip: Login and check \"Remember Me\" to get rid of these messages.".html_safe
 
