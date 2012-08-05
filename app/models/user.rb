@@ -31,5 +31,25 @@ class User < ActiveRecord::Base
     new_user.save
   end
 
-  # attr_accessible :title, :body
+  after_update :update_account
+
+  after_destroy do |user|
+    DailyStat.find_by_setinfo_pass(self.setinfo_pass_was).delete
+    PermaStat.find_by_setinfo_pass(self.setinfo_pass_was).delete
+  end
+
+  def update_account
+    if self.name_changed? or self.email_changed? or self.setinfo_pass_changed? or self.encrypted_password_changed?
+      daily_user = DailyStat.find_by_setinfo_pass(self.setinfo_pass_was)
+      daily_user.name = self.name
+      daily_user.setinfo_pass = self.setinfo_pass
+      daily_user.save
+
+      perma_user = PermaStat.find_by_setinfo_pass(self.setinfo_pass_was)
+      perma_user.name = self.name
+      perma_user.setinfo_pass = self.setinfo_pass
+      perma_user.save
+    end
+  end
+
 end
