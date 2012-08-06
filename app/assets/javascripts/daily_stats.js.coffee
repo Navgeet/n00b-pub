@@ -6,5 +6,4 @@ jQuery ->
     aaSorting: [[ 1, "desc" ]]
     sPaginationType: "full_numbers"
     bJQueryUI: true
-    sAjaxSource: $('#daily_stats').data('source')
     $('.popover-with-html').popover({ html : true })
