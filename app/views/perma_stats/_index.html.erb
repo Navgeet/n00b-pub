@@ -17,7 +17,7 @@
       <td align="right"><%= perma_stat.deaths %></td>
       <td align="right"><%= (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
       <td align="right"><%= (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
-      <td align="right"><%= "#{perma_stat.time} hrs" %></td>
+      <td align="right"><%= "#{perma_stat.time.round(1)} hrs" %></td>
     </tr>
     <% end %>
   </tbody>
