@@ -12,7 +12,30 @@
   <tbody>
     <% @daily_stats.each do |daily_stat| %>
     <tr>
-      <td align="right"><%= link_to(daily_stat.name, "p/".concat(daily_stat.name.parameterize.underscore), :class => "popover-with-html", :title => daily_stat.name, "data-content" => "shit") %>
+      <% @perma = PermaStat.find_by_setinfo_pass(daily_stat.setinfo_pass) %>
+      <td align="right"><%= link_to(daily_stat.name, "p/".concat(daily_stat.name.parameterize.underscore), :class => "popover-with-html", :title =>"<font size=\"3\">#{daily_stat.name}", "data-content" => "</font>
+	<font size=\"1\">
+	<table>
+	  <thead>
+	    <tr>
+	      <th width=\"40px\">Kills</th>
+	      <th width=\"40px\">Deaths</th>
+	      <th width=\"55px\">% Hits</th>
+	      <th width=\"45px\">% HS</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td>#{@perma.kills}</td>
+	      <td>#{@perma.deaths}</td>
+	      <td>#{(100*@perma.hits.to_f/@perma.shots).round(2)}</td>
+	      <td>#{(100*@perma.headshots.to_f/@perma.shots).round(2)}</td>
+	    </tr>
+	  </tbody>
+	</table><div align=\"center\">
+	#{@perma.time.round(1)} hrs</div>
+	</font>
+	") %>
       <td align="right"><%= daily_stat.kills %></td>
       <td align="right"><%= daily_stat.deaths %></td>
       <td align="right"><%= (100 * daily_stat.hits.to_f/daily_stat.shots).round(2) %></td>
