@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   $('#daily_stats').dataTable
+    aaSorting: [[ 1, "desc" ]]
     sPaginationType: "full_numbers"
-    bJQueryUI: true    
-    $('#daily_stats__name').popover()
-    $('.popover-with-html').popover({ html : true });
-    
+    bJQueryUI: true
+    sAjaxSource: $('#daily_stats').data('source')
+    $('.popover-with-html').popover({ html : true })
