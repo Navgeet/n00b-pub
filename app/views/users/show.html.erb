@@ -5,6 +5,6 @@
 <p><b>Deaths</b> - <%= @player.deaths %></p>
 <p><b>% Hits</b> - <%= (100*@player.hits.to_f/@player.shots).round(2) %></p>
 <p><b>% Headshots</b> - <%= (100*@player.headshots.to_f/@player.shots).round(2) %></p>
-<p><b>Time Played</b> - <%= "#{@player.time} hrs" %></p><br>
+<p><b>Time Played</b> - <%= "#{@player.time.round(1)} hrs" %></p><br>
 <p>Registered on <b><%= @user.created_at.to_s.split(" ").first %></b></p>
 
