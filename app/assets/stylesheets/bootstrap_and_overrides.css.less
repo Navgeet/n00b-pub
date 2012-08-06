@@ -46,19 +46,27 @@ max-width: 975px;
     }
 
 .tabs-left > .nav-tabs {
+  width: 10.5%;
   float: left;
       margin-right: -1px;
             border-right: 0;
-	    }
-	    .tabs-left > .nav-tabs .active > a,
-	    .tabs-left > .nav-tabs .active > a:hover {
-  float: none;
-     border-left: 3px solid #B5A4EA;
-   border-top: 3px solid #B5A4EA;
-   border-bottom: 3px solid #B5A4EA;
-   border-radius: 8px 0 0 8px;
-
+    }
+    .tabs-left > .nav-tabs .active > a,
+    .tabs-left > .nav-tabs .active > a:hover {
+      background-color: @white; 
+      float: none;
+      border-left: 3px solid #B5A4EA;
+      border-top: 3px solid #B5A4EA;
+      border-bottom: 3px solid #B5A4EA;
+      border-radius: 8px 0 0 8px;
   }
+.tabs-left > .nav-tabs a:hover {
+ background-color: transparent;
+ border-top:   0; 	
+ border-right: 0; 	
+ border-bottom:0; 
+ border-left:  0; 	
+}
 
       * {
     margin: 0;
