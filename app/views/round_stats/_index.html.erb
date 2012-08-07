@@ -52,7 +52,28 @@
     <% @cts.sort_by{|e| -e[:kills]}.each do |player| %>
     <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
     <tr>
-      <td><%= if reg_player then link_to(player.name, "p/".concat(reg_player.name), :class => "popover-with-html", :title => reg_player.name, "data-content" => "shit") else player.name end %></td>
+      <td><%= if reg_player then link_to(player.name, "p/".concat(reg_player.name), :class => "popover-with-html", :title => reg_player.name, "data-content" => "</font>
+	<font size=\"1\">
+	<table>
+	  <thead>
+	    <tr>
+	      <th width=\"40px\">Kills</th>
+	      <th width=\"40px\">Deaths</th>
+	      <th width=\"55px\">% Hits</th>
+	      <th width=\"45px\">% HS</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td>#{reg_player.kills}</td>
+	      <td>#{reg_player.deaths}</td>
+	      <td>#{(100*reg_player.hits.to_f/reg_player.shots).round(2)}</td>
+	      <td>#{(100*reg_player.headshots.to_f/reg_player.shots).round(2)}</td>
+	    </tr>
+	  </tbody>
+	</table><div align=\"center\">
+	#{reg_player.time.round(1)} hrs</div>
+	</font>") else player.name end %></td>
       <td><%= player.kills %></td>
       <td><%= player.deaths %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
