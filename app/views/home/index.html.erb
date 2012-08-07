@@ -1,19 +1,19 @@
-<% map_info = File.read("/home/nav/cs/cstrike/current_map") %>
-<% map = map_info.split(" ")[0] %>
-<% hr = map_info.split(" ")[1] %>
-<% min = map_info.split(" ")[2] %>
-<% yr = map_info.split(" ")[4] %>
-<% month = map_info.split(" ")[5] %>
-<% date = map_info.split(" ")[6] %>
+<% require 'gchart' %>
+<% mp = File.read("/home/nav/cs/cstrike/current_map").split(" ") %>
 
 <div class="row">
   <div class="span2">
-    <img src="/<%= map %>.jpg" height="130" width="200" style="border:3px ridge black" />
+    <img src="/<%= mp[0] %>.jpg" height="130" width="200" style="border:3px ridge black" />
   </div>
-  <div class="span2">
-    <b><font size="3"><%= map %></font><br>
+  <div class="span3">
+    <b><font size="3"><%= mp[0] %></font><br>
       <%= @round_stats.count %>/24</b> players<br>
-    <i>running from <%= distance_of_time_in_words(Time.local(yr, month, date, hr, min, 0), Time.new) %></i>
+    <i>running from <%= distance_of_time_in_words(Time.local(mp[4], mp[5], mp[6], mp[1], mp[2], mp[3]), Time.new) %></i>
+  </div>
+  <div class="span4">
+    <a href="<%= @pie_chart %>">
+    <img src="<%= @pie_chart %>" height="130" width="200" style="border:3px ridge black" />
+    </a>
   </div>
 </div>
 <br>
