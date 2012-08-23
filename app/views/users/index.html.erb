@@ -2,7 +2,10 @@
 <ul class="users">
   <% @users.each do |user| %>
     <li>
-      <%= link_to user.name, user.name %> signed up <%= user.created_at.to_date %>
+      <% reg_date = user.created_at.strftime("#{user.created_at.day.ordinalize} %B") %>
+      <% reg_yr = user.created_at.strftime("%Y") %>
+      <%= link_to user.name, "p/".concat(user.name.parameterize.underscore) %> signed up on <%= "#{reg_date}" %>
+      <%= ", #{reg_yr}" if reg_yr.to_i > 2012 %>
     </li>
   <% end %>
 </ul>
