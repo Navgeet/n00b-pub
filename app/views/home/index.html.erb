@@ -1,39 +1,104 @@
-<% require 'gchart' %>
-<% mp = File.read("/home/nav/cs/cstrike/current_map").split(" ") %>
+<% a= "" %>
+<% @map_hash.each do |k, v| %>
+<% a << "['#{k}', #{v}], " %>
+<% end %>
+<% require 'tod' %>
+<% t = TimeOfDay.new(6) %>
+<% b= "" %>
+<% @player_count_array.each do |e| %>
+<% b << "['#{t.strftime("%I:%M %p")}', #{e}], " %>
+<% t = t + 120 %>
+<% end %>
+
+<head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Map', 'Seconds'],
+    <%= a %>
+    ]);
+
+    var options = {
+    is3D: true,
+    width:900,
+    height:400,
+    reverseCategories: true,
+    backgroundColor: { fill:'transparent' },
+    chartArea:{left:20,top:10,width:"100%",height:"100%"},
+    legend:{alignment: 'center'},
+    tooltip:{text: 'percentage'},
+    pieSliceTextStyle:{fontSize: 12}
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+    }
+  </script>
+  
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Time', 'Players'],
+    <%= b %>
+    ]);
+    
+    var options = {
+    curveType: "function",
+    chartArea: {width: '90%', height: '90%'},
+    width: 975, height: 600,
+    vAxis: {title: 'Players', baseline: 0, maxValue: 24, minValue: 0, textPosition: 'in'},
+    hAxis: {title: 'Time', slantedText: false, maxAlternation: 1, textStyle: {fontSize: 13}, maxTextLines: 1, showTextEvery: 120, viewWindowMode: 'pretty', textPosition: 'in'},
+
+    };
+    
+    var chart = new google.visualization.LineChart(document.getElementById('chart_line'));
+    chart.draw(data, options);
+    }
+  </script>
+</head>
 
 <div class="row">
   <div class="span2">
-    <img src="/<%= mp[0] %>.jpg" height="130" width="200" style="border:3px ridge black" />
+    <img src="/<%= @map_name %>.jpg" height="130" width="200" style="border:3px ridge black" />
   </div>
-  <div class="span3">
-    <b><font size="3"><%= mp[0] %></font><br>
+  <div class="span2">
+    <b><font size="3"><%= @map_name %></font><br>
       <%= @round_stats.count %>/24</b> players<br>
-    <i>running from <%= distance_of_time_in_words(Time.local(mp[4], mp[5], mp[6], mp[1], mp[2], mp[3]), Time.new) %></i>
-  </div>
-  <div class="span4">
-    <a href="<%= @pie_chart %>">
-    <img src="<%= @pie_chart %>" height="130" width="200" style="border:3px ridge black" />
-    </a>
+    <i>running from <%= distance_of_time_in_words(@map_time_started, Time.now) %></i>
   </div>
 </div>
 <br>
-<br>
-<br>
 <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Current score</a></li>
-    <li><a href="#tab2" data-toggle="tab">Today's scores</a></li>
-    <li><a href="#tab3" data-toggle="tab">All time scores</a></li>
+    <li class="active"><a href="#current" data-toggle="tab">Current score</a></li>
+    <li><a href="#daily" data-toggle="tab">Today's scores</a></li>
+    <li><a href="#perma" data-toggle="tab">All time scores</a></li>
+    <li><a href="#map_freq" data-toggle="tab">Map frequency</a></li>
+    <li><a href="#players" data-toggle="tab">Player count</a></li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
+    <div class="tab-pane active" id="current">
       <%= render "round_stats/index" %>
     </div>
-    <div class="tab-pane" id="tab2">
-      <%= render "daily_stats/index" %>
+    <div class="tab-pane" id="daily">
+      <div id="daily-div">
+	<%= render "daily_stats/index" %>
+      </div>
     </div>
-    <div class="tab-pane" id="tab3">
+    <div class="tab-pane" id="perma">
       <%= render "perma_stats/index" %>
+    </div>
+    <div class="tab-pane" id="map_freq">
+      <div id="chart_div"></div>
+    </div>
+    <div class="tab-pane" id="players">
+      <div id="chart_line"></div>
     </div>
   </div>
 </div>
