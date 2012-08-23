@@ -4,7 +4,6 @@
       <th>Name</th>
       <th>Kills</th>
       <th>Deaths</th>
-      <th>Kills/Death</th>
       <th>% Hits</th>
       <th>% Headshots</th>
       <th>Time played</th>
@@ -37,12 +36,11 @@
 	#{@perma.time.round(1)} hrs</div>
 	</font>
 	") %>
-      <td><%= daily_stat.kills %></td>
-      <td><%= daily_stat.deaths %></td>
-      <td><%= (daily_stat.kills.to_f/daily_stat.deaths).round(1) %></td>
-      <td><%= (100 * daily_stat.hits.to_f/daily_stat.shots).round(2) %></td>
-      <td><%= (100 * daily_stat.headshots.to_f/daily_stat.shots).round(2) %></td>
-      <td><%= if (time=daily_stat.time)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
+      <td align="right"><%= daily_stat.kills %></td>
+      <td align="right"><%= daily_stat.deaths %></td>
+      <td align="right"><%= (100 * daily_stat.hits.to_f/daily_stat.shots).round(2) %></td>
+      <td align="right"><%= (100 * daily_stat.headshots.to_f/daily_stat.shots).round(2) %></td>
+      <td align="right"><%= if (time=daily_stat.time)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
     </tr>
     <% end %>
   </tbody>

@@ -1,17 +1,18 @@
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
-      <th width="30%">Nick</th>
-      <th width="12%">Kils</th>
-      <th width="12%">Deaths</th>
-      <th width="12%">% Hits</th>
-      <th width="14%">% Headshots</th>
-      <th width="20%">Time played</th>
+      <th width="22%">Nick</th>
+      <th width="13%">Kils</th>
+      <th width="13%">Deaths</th>
+      <th width="13%">Kills/Death</th>
+      <th width="13%">% Hits</th>
+      <th width="13%">% Headshots</th>
+      <th width="23%">Time played</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-    <td colspan="6"><strong><font color="red">Terrorists - <%= @ts.count %> players</font></strong></td>
+    <td colspan="7"><strong><font color="red">Terrorists - <%= @ts.count %> players</font></strong></td>
     </tr>
     <% @ts.sort_by{|e| -e[:kills]}.each do |player| %>
     <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
@@ -39,15 +40,16 @@
 	#{reg_player.time.round(1)} hrs</div>
 	</font>
 	") else player.name end %></td>
-      <td align="center"><%= player.kills %></td>
+      <td><%= player.kills %></td>
       <td><%= player.deaths %></td>
+      <td><%= (player.kills.to_f/player.deaths).round(1) %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
-      <td align="center"><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
+      <td><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
       <td><%= if (time=player.time/60)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
     </tr>
     <% end %>
     <tr>
-    <td colspan="6" align="center"><strong><font color="blue">Counter Terrorists - <%= @cts.count %> players</font></strong></td>
+    <td colspan="7" align="center"><strong><font color="blue">Counter Terrorists - <%= @cts.count %> players</font></strong></td>
     </tr>
     <% @cts.sort_by{|e| -e[:kills]}.each do |player| %>
     <% reg_player = PermaStat.find_by_setinfo_pass(player.setinfo_pass) %>
@@ -76,6 +78,7 @@
 	</font>") else player.name end %></td>
       <td><%= player.kills %></td>
       <td><%= player.deaths %></td>
+      <td><%= (player.kills.to_f/player.deaths).round(1) %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
       <td><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
       <td><%= if (time=player.time/60)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
