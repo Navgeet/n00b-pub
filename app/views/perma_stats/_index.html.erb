@@ -4,6 +4,7 @@
       <th>Name</th>
       <th>Kills</th>
       <th>Deaths</th>
+      <th>Kills/Death</th>
       <th>% Hits</th>
       <th>% Headshots</th>
       <th>Time Played</th>
@@ -12,12 +13,13 @@
   <tbody>
     <% @perma_stats.each do |perma_stat| %>
     <tr>
-      <td align="right"><%= link_to perma_stat.name, "p/".concat(perma_stat.name.parameterize.underscore)  %></td>
-      <td align="right"><%= perma_stat.kills %></td>
-      <td align="right"><%= perma_stat.deaths %></td>
-      <td align="right"><%= (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
-      <td align="right"><%= (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
-      <td align="right"><%= "#{perma_stat.time.round(1)} hrs" %></td>
+      <td><%= link_to perma_stat.name, "p/".concat(perma_stat.name.parameterize.underscore)  %></td>
+      <td><%= perma_stat.kills %></td>
+      <td><%= perma_stat.deaths %></td>
+      <td><%= (perma_stat.kills.to_f/perma_stat.deaths).round(1) %></td>
+      <td><%= (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
+      <td><%= (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
+      <td><%= "#{perma_stat.time.round(1)} hrs" %></td>
     </tr>
     <% end %>
   </tbody>
