@@ -24,5 +24,6 @@ every 2.minutes do
 end
 
 every 1.day, :at => '6:01 am' do
+  rake "stats:generate_average_graph_data", :environment => 'development'
   command "/bin/rm /home/nav/player_count_log"
 end

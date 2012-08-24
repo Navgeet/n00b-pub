@@ -3,6 +3,8 @@ class HomeController < ApplicationController
 
     # This builds up the player_count line chart
     @player_count_array = File.read("/home/nav/player_count_log").split(" ").map(&:to_i)
+    @average_count_array = File.read("/home/nav/average_player_count_log").split(" ").map(&:to_i)
+    @average_count_array.pop
 
     # This builds up the map_frequency pie chart
     @map_hash = File.read("/home/nav/cs/cstrike/map_log").downcase.split.inject(Hash.new(0)) { |h,e| id, n = e.split('-'); h[id] += n.to_i; h } 

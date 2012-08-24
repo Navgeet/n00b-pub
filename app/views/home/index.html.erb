@@ -4,9 +4,10 @@
 <% end %>
 <% require 'tod' %>
 <% t = TimeOfDay.new(6) %>
-<% b= "" %>
-<% @player_count_array.each do |e| %>
-<% b << "['#{t.strftime("%I:%M %p")}', #{e}], " %>
+<% b = "" %>
+<% @player_count_array.fill(0, @player_count_array.count, 720-@player_count_array.count) %>
+<% @player_count_array.zip(@average_count_array).each do |c, a| %>
+<% b << "['#{t.strftime("%I:%M %p")}', #{c}, #{a}]," %>
 <% t = t + 120 %>
 <% end %>
 
@@ -44,7 +45,7 @@
     google.setOnLoadCallback(drawChart);
     function drawChart() {
     var data = google.visualization.arrayToDataTable([
-    ['Time', 'Players'],
+    ['Time', 'Current traffic', 'Average traffic'],
     <%= b %>
     ]);
     

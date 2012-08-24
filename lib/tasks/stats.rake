@@ -1,14 +1,15 @@
 # coding: utf-8
 
 namespace :stats do
-  desc "reads the file ~/player_count_log and generates today's player count graph"
-    task :generate_graph => :environment do
-      require 'gchart'
-      daily_player_count = File.read("/home/nav/player_count_log").split(" ").map(&:to_i)
-      sh "wget -c -O /home/nav/n00b-pub/public/player_count_chart.jpg \"#{Gchart.line(:title => "Player count", :data => daily_player_count, :size => '600x460', :axis_with_labels => 'y', :axis_labels => (0..24).to_a.map(&:to_s), :encoding => 'text')}\""
-      #Gchart.line(:title => "Player count", :data => daily_player_count, :size => '600x460', :axis_with_labels => 'y', :axis_labels => (0..24).to_a.map(&:to_s), :format => 'file', :filename => '/home/nav/n00b-pub/public/player_count_chart.jpg')
-      sh "wget -c -O /home/nav/n00b-pub/public/player_count_chart_thumb.jpg \"#{Gchart.line(:title => "Player count", :data => daily_player_count, :size => '200x130')}\""
-    end
+  desc "updates the file ~/average_player_count_log"
+  task :generate_average_graph_data => :environment do
+    todays_count_array = File.read("/home/nav/player_count_log").split(" ").map(&:to_i)
+    average_count_array = File.read("/home/nav/average_player_count_log").split(" ").map(&:to_i)
+    no_of_days = average_count_array.pop
+    new_average_array = average_count_array.each_with_index.map { |x, i| (x * no_of_days + todays_count_array[i]) / (no_of_days + 1) }
+    out = new_average_array.join(" ") + " #{no_of_days + 1}"
+    File.open("/home/nav/average_player_count_log", 'w') { |f| f.write(out) }
+  end
     
   desc "deletes the previous player_count_log file"
     task :flush_player_count do
