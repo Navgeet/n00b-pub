@@ -4,6 +4,6 @@
 jQuery ->
   $('#perma_stats').dataTable
     aaSorting: [[ 1, "desc" ]]
-    aoColumns: [ null, null, null, null, null, { "sType": "time" } ]
+    aoColumns: [ null, null, null, null, null, null, { "sType": "time" } ]
     sPaginationType: "full_numbers"
     bJQueryUI: true

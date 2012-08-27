@@ -23,6 +23,7 @@
       <th>Name</th>
       <th>Kills</th>
       <th>Deaths</th>
+      <th>K:D</th>
       <th>% Hits</th>
       <th>% Headshots</th>
       <th>Time Played</th>
@@ -34,6 +35,7 @@
       <td align="right" width="30%"><%= link_to perma_stat.name, "p/".concat(perma_stat.name.parameterize.underscore)  %></td>
       <td align="right"><%= perma_stat.kills %></td>
       <td align="right"><%= perma_stat.deaths %></td>
+      <td align="right"><%= perma_stat.deaths == 0 ? 0 : (perma_stat.kills.to_f/perma_stat.deaths).round(2) %></td>
       <td align="right"><%= perma_stat.shots == 0 ? 0 : (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
       <td align="right"><%= perma_stat.shots == 0 ? 0 : (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
       <td align="right"><%= "#{perma_stat.time.round(1)} hrs" %></td>

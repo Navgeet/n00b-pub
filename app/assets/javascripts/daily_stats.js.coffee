@@ -4,7 +4,7 @@
 jQuery ->
   $('#daily_stats').dataTable
     aaSorting: [[ 1, "desc" ]]
-    aoColumns: [ null, null, null, null, null, { "sType": "hrs" } ]
+    aoColumns: [ null, null, null, null, null, null, { "sType": "hrs" } ]
     sPaginationType: "full_numbers"
     bJQueryUI: true
     $('.popover-with-html').popover({ html : true })

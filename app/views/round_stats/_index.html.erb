@@ -4,7 +4,7 @@
       <th width="22%">Nick</th>
       <th width="13%">Kils</th>
       <th width="13%">Deaths</th>
-      <th width="13%">Kills/Death</th>
+      <th width="13%">K:D</th>
       <th width="13%">% Hits</th>
       <th width="13%">% Headshots</th>
       <th width="23%">Time played</th>
@@ -78,7 +78,7 @@
 	</font>") else player.name end %></td>
       <td><%= player.kills %></td>
       <td><%= player.deaths %></td>
-      <td><%= (player.kills.to_f/player.deaths).round(1) %></td>
+      <td><%= player.deaths == 0 ? 0 : (player.kills.to_f/player.deaths).round(2) %></td>
       <td><%= (100 * player.hits.to_f/player.shots).round(2) %></td>
       <td><%= (100 * player.headshots.to_f/player.shots).round(2) %></td>
       <td><%= if (time=player.time/60)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
