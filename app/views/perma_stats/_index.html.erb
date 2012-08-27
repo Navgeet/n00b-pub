@@ -1,3 +1,22 @@
+<head>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "time-pre": function ( a ) {
+    var x = a.split(" ")[0];
+    return parseFloat( x, 10 );
+    },
+    
+    "time-asc": function ( a, b ) {
+    return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+      },
+      
+      "time-desc": function ( a, b ) {
+      return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+ 	}
+ 	} );
+  </script>
+</head>
+
 <table id="perma_stats" class="display">
   <thead>
     <tr>
@@ -12,11 +31,11 @@
   <tbody>
     <% @perma_stats.each do |perma_stat| %>
     <tr>
-      <td align="right"><%= link_to perma_stat.name, "p/".concat(perma_stat.name.parameterize.underscore)  %></td>
+      <td align="right" width="30%"><%= link_to perma_stat.name, "p/".concat(perma_stat.name.parameterize.underscore)  %></td>
       <td align="right"><%= perma_stat.kills %></td>
       <td align="right"><%= perma_stat.deaths %></td>
-      <td align="right"><%= (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
-      <td align="right"><%= (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
+      <td align="right"><%= perma_stat.shots == 0 ? 0 : (100 * perma_stat.hits.to_f/perma_stat.shots).round(2) %></td>
+      <td align="right"><%= perma_stat.shots == 0 ? 0 : (100 * perma_stat.headshots.to_f/perma_stat.shots).round(2) %></td>
       <td align="right"><%= "#{perma_stat.time.round(1)} hrs" %></td>
     </tr>
     <% end %>
