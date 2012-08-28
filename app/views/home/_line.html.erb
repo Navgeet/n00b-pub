@@ -1,0 +1,29 @@
+<head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Time', 'Current traffic', 'Average traffic'],
+    <%= @line_data_string %>
+    ]);
+    
+    var options = {
+    curveType: "function",
+    chartArea: {width: '90%', height: '90%'},
+    legend:{position: 'top'},
+    series: [{}, {color: 'grey', lineWidth: 1}],
+    width: 975, height: 600,
+    vAxis: {title: 'Players', baseline: 0, textPosition: 'in'},
+    hAxis: {title: 'Time', slantedText: false, maxAlternation: 1, textStyle: {fontSize: 13}, maxTextLines: 1, showTextEvery: 120, viewWindowMode: 'pretty', textPosition: 'in'},
+
+    };
+    
+    var chart = new google.visualization.LineChart(document.getElementById('graph_line'));
+    chart.draw(data, options);
+    }
+  </script>
+</head>
+
+<div id="graph_line"></div>

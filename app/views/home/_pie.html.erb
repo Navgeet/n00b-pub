@@ -1,0 +1,30 @@
+<head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Map', 'Seconds'],
+    <%= @pie_data_string %>
+    ]);
+
+    var options = {
+    is3D: false,
+    width: 900,
+    height: 600,
+    reverseCategories: true,
+    //backgroundColor: { fill:'transparent' },
+    chartArea:{left:40,top:30,width:"80%",height:"80%"},
+    legend:{alignment: 'center'},
+    tooltip:{text: 'percentage'},
+    pieSliceTextStyle:{fontSize: 12}
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('graph_pie'));
+    chart.draw(data, options);
+    }
+  </script>
+</head>
+
+<div id="graph_pie"></div>

@@ -6,10 +6,24 @@ class HomeController < ApplicationController
     @average_count_array = File.read("/home/nav/average_player_count_log").split(" ").map(&:to_i)
     @average_count_array.pop
 
+    require 'tod'
+    t = TimeOfDay.new(6)
+    @line_data_string = ""
+    @player_count_array.fill("null", @player_count_array.count, 720-@player_count_array.count)
+    @player_count_array.zip(@average_count_array).each do |c, a|
+      @line_data_string << "['#{t.strftime("%I:%M %p")}', #{c}, #{a}],"
+      t = t + 120
+    end
+
     # This builds up the map_frequency pie chart
     @map_hash = File.read("/home/nav/cs/cstrike/map_log").downcase.split.inject(Hash.new(0)) { |h,e| id, n = e.split('-'); h[id] += n.to_i; h } 
     @map_names = @map_hash.keys
     @map_times = @map_hash.values
+
+    @pie_data_string = ""
+    @map_hash.each do |k, v|
+      @pie_data_string << "['#{k}', #{v}], "
+    end
 
     # This provides the current map and the time it has been running
     mp = File.read("/home/nav/cs/cstrike/current_map").split(" ")
