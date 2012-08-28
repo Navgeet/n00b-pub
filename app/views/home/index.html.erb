@@ -1,74 +1,8 @@
-<% a= "" %>
-<% @map_hash.each do |k, v| %>
-<% a << "['#{k}', #{v}], " %>
-<% end %>
-<% require 'tod' %>
-<% t = TimeOfDay.new(6) %>
-<% b = "" %>
-<% @player_count_array.fill(0, @player_count_array.count, 720-@player_count_array.count) %>
-<% @player_count_array.zip(@average_count_array).each do |c, a| %>
-<% b << "['#{t.strftime("%I:%M %p")}', #{c}, #{a}]," %>
-<% t = t + 120 %>
-<% end %>
-
-<head>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(drawChart);
-    function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-    ['Map', 'Seconds'],
-    <%= a %>
-    ]);
-
-    var options = {
-    is3D: false,
-    width:900,
-    height:600,
-    reverseCategories: true,
-    backgroundColor: { fill:'transparent' },
-    chartArea:{left:20,top:10,width:"100%",height:"100%"},
-    legend:{alignment: 'center'},
-    tooltip:{text: 'percentage'},
-    pieSliceTextStyle:{fontSize: 12}
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-    }
-  </script>
-  
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(drawChart);
-    function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-    ['Time', 'Current traffic', 'Average traffic'],
-    <%= b %>
-    ]);
-    
-    var options = {
-    curveType: "function",
-    chartArea: {width: '90%', height: '90%'},
-    width: 975, height: 600,
-    vAxis: {title: 'Players', baseline: 0, maxValue: 24, minValue: 0, textPosition: 'in'},
-    hAxis: {title: 'Time', slantedText: false, maxAlternation: 1, textStyle: {fontSize: 13}, maxTextLines: 1, showTextEvery: 120, viewWindowMode: 'pretty', textPosition: 'in'},
-
-    };
-    
-    var chart = new google.visualization.LineChart(document.getElementById('chart_line'));
-    chart.draw(data, options);
-    }
-  </script>
-</head>
-
 <div class="row">
   <div class="span2">
     <img src="/<%= @map_name %>.jpg" height="130" width="200" style="border:3px ridge black" />
   </div>
-  <div class="span2">
+  <div class="span3">
     <b><font size="3"><%= @map_name %></font><br>
       <%= @round_stats.count %>/24</b> players<br>
     <i>running from <%= distance_of_time_in_words(@map_time_started, Time.now) %></i>
@@ -85,21 +19,21 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="current">
-      <%= render "round_stats/index" %>
+      <%= render "round_stats" %>
     </div>
     <div class="tab-pane" id="daily">
       <div id="daily-div">
-	<%= render "daily_stats/index" %>
+	<%= render "daily_stats" %>
       </div>
     </div>
     <div class="tab-pane" id="perma">
-      <%= render "perma_stats/index" %>
+      <%= render "perma_stats" %>
     </div>
     <div class="tab-pane" id="map_freq">
-      <div id="chart_div"></div>
+      <%= render "pie" %>
     </div>
     <div class="tab-pane" id="players">
-      <div id="chart_line"></div>
+      <%= render "line" %>
     </div>
   </div>
 </div>

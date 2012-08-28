@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $('#daily_stats').dataTable
+  $('#daily_table').dataTable
     aaSorting: [[ 1, "desc" ]]
     aoColumns: [ null, null, null, null, null, null, { "sType": "hrs" } ]
     sPaginationType: "full_numbers"
