@@ -1,9 +1,6 @@
 N00bPub::Application.routes.draw do
   get "faq" => "faq#index"
 
-  resources :daily_stats
-  resources :perma_stats
-
   #get "home/index"
   authenticated :user do
     root :to => 'home#index'
@@ -13,15 +10,8 @@ N00bPub::Application.routes.draw do
   devise_for :users
   resources :users, :only => [:show, :index]
 
-  resources :round_stats
   match 'p/:url_name' => 'users#show'
 
-  # get "bugs/new"
-  # post "bugs/create"
-  # get "bugs/:id" => "bugs#show"
-  # get "bugs" => "bugs#index"
-  resources :bugs
-  # match 'users/:name' => 'users#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
