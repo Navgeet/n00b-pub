@@ -32,38 +32,21 @@
   </thead>
   <tbody>
     <% @daily_stats.each do |daily_stat| %>
+    <% stats = PermaStat.find_by_setinfo_pass(daily_stat.setinfo_pass) %>
     <tr>
-      <% @perma = PermaStat.find_by_setinfo_pass(daily_stat.setinfo_pass) %>
-      <td align="right" width="30%"><%= link_to(daily_stat.name, "p/".concat(daily_stat.name.parameterize.underscore), :class => "popover-with-html", :title =>"<font size=\"3\">#{daily_stat.name}", "data-content" => "</font>
-	<font size=\"1\">
-	  <table>
-	    <thead>
-	      <tr>
-		<th width=\"40px\">Kills</th>
-		<th width=\"40px\">Deaths</th>
-		<th width=\"55px\">% Hits</th>
-		<th width=\"45px\">% HS</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-		<td>#{@perma.kills}</td>
-		<td>#{@perma.deaths}</td>
-		<td>#{(100*@perma.hits.to_f/@perma.shots).round(2)}</td>
-		<td>#{(100*@perma.headshots.to_f/@perma.shots).round(2)}</td>
-	      </tr>
-	    </tbody>
-	  </table><div align=\"center\">
-	    #{@perma.time.round(1)} hrs</div>
-	</font>
-	") %>
+      <td align="right" width="30%"><%= render :partial => "popover" , :locals => { :player_name => daily_stat.name, :stats => stats } %></td>
       <td align="right"><%= daily_stat.kills %></td>
       <td align="right"><%= daily_stat.deaths %></td>
       <td align="right"><%= daily_stat.deaths == 0 ? 0 : (daily_stat.kills.to_f/daily_stat.deaths).round(2) %></td>
       <td align="right"><%= daily_stat.shots == 0 ? 0 : (100 * daily_stat.hits.to_f/daily_stat.shots).round(2) %></td>
       <td align="right"><%= daily_stat.shots == 0 ? 0 : (100 * daily_stat.headshots.to_f/daily_stat.shots).round(2) %></td>
-      <td align="right"><%= if (time=daily_stat.time)<60 then "#{time} mins" else "#{(time.to_f/60).round(1)} hrs" end %></td>
-			    </tr>
+      <td align="right"><% if (time = daily_stat.time) < 60 %>
+			<%= "#{time} mins" %>
+			<% else %>
+			<%= "#{(time.to_f/60).round(1)} hrs" %>
+			<% end %>
+      </td>
+    </tr>
     <% end %>
   </tbody>
 </table>

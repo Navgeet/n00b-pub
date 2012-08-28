@@ -1,0 +1,23 @@
+<%= link_to(player_name, "p/".concat(stats.name.parameterize.underscore), :class => "popover-with-html", :title =>"<font size=\"3\">#{stats.name}", "data-content" => "</font>
+	<font size=\"1\">
+	  <table>
+	    <thead>
+	      <tr>
+		<th width=\"40px\">Kills</th>
+		<th width=\"40px\">Deaths</th>
+		<th width=\"55px\">% Hits</th>
+		<th width=\"45px\">% HS</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+		<td>#{stats.kills}</td>
+		<td>#{stats.deaths}</td>
+		<td>#{(100*stats.hits.to_f/stats.shots).round(2)}</td>
+		<td>#{(100*stats.headshots.to_f/stats.shots).round(2)}</td>
+	      </tr>
+	    </tbody>
+	  </table><div align=\"center\">
+	    #{stats.time.round(1)} hrs</div>
+	</font>
+	") %>
