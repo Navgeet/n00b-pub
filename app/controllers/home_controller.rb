@@ -27,11 +27,11 @@ class HomeController < ApplicationController
 
     # This provides the current map and the time it has been running
     mp = File.read("/home/nav/cs/cstrike/current_map").split(" ")
-    @map_name = mp[0]
+    @map_name = mp[0].downcase
     @map_time_started = Time.local(mp[4], mp[5], mp[6], mp[1], mp[2], mp[3])
 
     # The messages which appear on the top of home page
-    flash.now[:alert] = "Please note that the site is in beta stage. <a href=\"/bugs\">Help out</a> by reporting bugs and suggesting enhancements.".html_safe
+    flash.now[:alert] = "Please note that the site is in beta stage. <a href=\"https://github.com/Navgeet/n00b-pub/issues\">Help out</a> by reporting bugs and suggesting enhancements.".html_safe
     flash.now[:notice] = "New here? Read this if you are <a href=\"/faq\">getting started</a>.".html_safe
     flash.now[:tip] = "Tip: Login and check \"Remember Me\" to get rid of these messages.".html_safe
 
