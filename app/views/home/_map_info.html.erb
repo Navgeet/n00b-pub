@@ -1,0 +1,13 @@
+<div class="row">
+  
+  <div class="span2">
+    <img id="map_thumb" src="/<%= @map_name %>.jpg" height="130" width="200" style="border:3px ridge black" />
+  </div>
+  
+  <div class="span3">
+    <b><font size="3"><%= map_name %></font><br>
+      <%= no_of_players %>/24</b> players<br>
+    <i>running from <%= distance_of_time_in_words(map_time_started, Time.now) %></i>
+  </div>
+  
+</div>

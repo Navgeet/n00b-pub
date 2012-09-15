@@ -1,4 +1,8 @@
 N00bPub::Application.routes.draw do
+  get "ajax" => "home#ajax"
+  get "opchat" => "messages#index"
+  resources :messages
+
   get "faq" => "faq#index"
 
   #get "home/index"

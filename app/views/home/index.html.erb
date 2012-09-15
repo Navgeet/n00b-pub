@@ -1,13 +1,7 @@
-<div class="row">
-  <div class="span2">
-    <img src="/<%= @map_name %>.jpg" height="130" width="200" style="border:3px ridge black" />
-  </div>
-  <div class="span3">
-    <b><font size="3"><%= @map_name %></font><br>
-      <%= @round_stats.count %>/24</b> players<br>
-    <i>running from <%= distance_of_time_in_words(@map_time_started, Time.now) %></i>
-  </div>
+<div id="map_info">
+  <%= render :partial => "map_info" , :locals => { :map_name => @map_name, :no_of_players => @round_stats.count, :map_time_started => @map_time_started } %>
 </div>
+
 <br>
 <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
@@ -19,7 +13,7 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="current">
-      <%= render "round_stats" %>
+      <%= render :partial => "round_stats", :locals => { :ts => @ts, :cts => @cts } %>
     </div>
     <div class="tab-pane" id="daily">
       <div id="daily-div">

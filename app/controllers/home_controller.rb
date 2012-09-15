@@ -48,5 +48,19 @@ class HomeController < ApplicationController
     @round_stats = RoundStat.all
     @daily_stats = DailyStat.all
     @perma_stats = PermaStat.all
+
+  end
+
+  def ajax
+    @no_of_players = RoundStat.all.count
+    mp = File.read("/home/nav/cs/cstrike/current_map").split(" ")
+    @map_name = mp[0].downcase
+    @map_time_started = Time.local(mp[4], mp[5], mp[6], mp[1], mp[2], mp[3])
+
+    @title = "#{@no_of_players}/24 - #{@map_name}"
+
+    @ts = RoundStat.find_all_by_team(1)
+    @cts = RoundStat.find_all_by_team(2)
+
   end
 end
