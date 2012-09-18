@@ -11,8 +11,13 @@ namespace :stats do
     File.open("/home/nav/average_player_count_log", 'w') { |f| f.write(out) }
   end
     
-  desc "deletes the previous player_count_log file"
-    task :flush_player_count do
-    File.delete("/home/nav/player_count_log") if File.exist?("/home/nav/player_count_log")
+  desc "counts the times for each map and creates a new file with total time for the map"
+  task :reduce_map_times_file do
+    @map_hash = File.read("/home/nav/cs/cstrike/map_log").downcase.split.inject(Hash.new(0)) { |h,e| id, n = e.split('-'); h[id] += n.to_i; h }
+    File.open("/home/nav/cs/cstrike/map_log.new", 'w') do |f|
+      @map_hash.each do |map, time|
+        f.puts "#{map}-#{time}"
+      end
+    end
   end
 end
