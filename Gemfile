@@ -18,7 +18,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+  gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails'
   gem 'jquery-ui-rails'
   gem "twitter-bootstrap-rails"
   gem 'less'
@@ -50,3 +50,5 @@ gem "rolify", ">= 3.1.0"
 gem 'acts_as_tree_rails3'
 gem 'whenever', :require => false
 gem 'tod'
+gem 'private_pub'
+gem 'thin'
