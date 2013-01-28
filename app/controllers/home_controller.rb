@@ -16,25 +16,14 @@ class HomeController < ApplicationController
     end
 
     # This builds up the map_frequency pie chart
-    @map_hash = File.read("/home/nav/cs/cstrike/map_log").downcase.split.inject(Hash.new(0)) { |h,e| id, n = e.split('-'); h[id] += n.to_i; h } 
-    @map_names = @map_hash.keys
-    @map_times = @map_hash.values
+    @pie_data_string = Map.get_pie_chart_data
 
-    @pie_data_string = ""
-    @map_hash.each do |k, v|
-      @pie_data_string << "['#{k}', #{v}], "
-    end
-
-    # This provides the current map and the time it has been running
-    mp = File.read("/home/nav/cs/cstrike/current_map").split(" ")
-    @map_name = mp[0].downcase
-    @map_time_started = Time.local(mp[4], mp[5], mp[6], mp[1], mp[2], mp[3])
+    @map_name = Map.current_map_name
+    @map_time_started = Map.current_map_time_started
 
     # The messages which appear on the top of home page
-    flash.now[:alert] = "Please note that the site is in beta stage. <a href=\"https://github.com/Navgeet/n00b-pub/issues\">Help out</a> by reporting bugs and suggesting enhancements.".html_safe
     flash.now[:notice] = "New here? Read this if you are <a href=\"/faq\">getting started</a>.".html_safe
-    flash.now[:tip] = "Tip: Login and check \"Remember Me\" to get rid of these messages.".html_safe
-
+    
     # Make the flash messages dissapear if the user is logged in
     if user_signed_in?
       flash.now[:alert] = nil
@@ -42,7 +31,6 @@ class HomeController < ApplicationController
       flash.now[:tip] = nil
     end
 
-    @users = User.all
     @ts = RoundStat.find_all_by_team(1)
     @cts = RoundStat.find_all_by_team(2)
     @round_stats = RoundStat.all
@@ -53,9 +41,8 @@ class HomeController < ApplicationController
 
   def ajax
     @no_of_players = RoundStat.all.count
-    mp = File.read("/home/nav/cs/cstrike/current_map").split(" ")
-    @map_name = mp[0].downcase
-    @map_time_started = Time.local(mp[4], mp[5], mp[6], mp[1], mp[2], mp[3])
+    @map_name = Map.current_map_name
+    @map_time_started = Map.current_map_time_started
 
     @title = "#{@no_of_players}/24 - #{@map_name}"
 
